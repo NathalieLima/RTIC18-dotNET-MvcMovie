@@ -12,6 +12,6 @@ public class Movie
     public string? Genre { get; set; }
     public decimal Price { get; set; }
     public int StudioId { get; set; }
-    public Studio Studio { get; set; }
-    public ICollection<Artist> Artists { get; set; }
+    public Studio? Studio { get; set; }
+    public ICollection<Artist>? Artists { get; set; }
 }

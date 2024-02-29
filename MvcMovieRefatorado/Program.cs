@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Data;
+using MvcMovie.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,7 @@ else
 }
 
 // Add services to the container.
+builder.Services.AddScoped<AddCabecalhoMiddleware>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

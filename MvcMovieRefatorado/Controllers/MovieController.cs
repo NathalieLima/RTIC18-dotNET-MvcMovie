@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MvcMovie.Data;
 using MvcMovie.Models;
 
-namespace MvcMovieRefatorado.Controllers
+namespace MvcMovie.Controllers
 {
     public class MovieController : Controller
     {
@@ -19,14 +19,15 @@ namespace MvcMovieRefatorado.Controllers
             _context = context;
         }
 
-        // GET: Movie
+        // GET: Movies
         public async Task<IActionResult> Index()
         {
-            var mvcMovieContext = _context.Movie.Include(m => m.Studio);
-            return View(await mvcMovieContext.ToListAsync());
+            return _context.Movie != null ?
+                        View(await _context.Movie.ToListAsync()) :
+                        Problem("Entity set 'MvcMovieContext.Movie'  is null.");
         }
 
-        // GET: Movie/Details/5
+        // GET: Movies/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Movie == null)
@@ -35,7 +36,6 @@ namespace MvcMovieRefatorado.Controllers
             }
 
             var movie = await _context.Movie
-                .Include(m => m.Studio)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (movie == null)
             {
@@ -45,47 +45,71 @@ namespace MvcMovieRefatorado.Controllers
             return View(movie);
         }
 
-        // GET: Movie/Create
+        // GET: Movies/Create
         public IActionResult Create()
         {
-            ViewData["Studios"] = _context.Studio.ToList();
-            ViewData["Artists"] = _context.Artist.ToList();
+            ViewBag.Studios = new SelectList(_context.Studio, "Id", "Name");
+            ViewBag.Artists = new MultiSelectList(_context.Artist, "Id", "Name");
             
             return View();
         }
-
-        // POST: Movie/Create
+        
+        // POST: Movies/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,Genre,Price,Studios,Artists")] Movie movie)
+        public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,Genre,Price,StudioId,Studio")] Movie movie, string[] Artists)
         {
             Console.WriteLine($"Create method called. Movie: {movie.Title}, StudioId: {movie.StudioId}");
 
-            foreach (var modelState in ModelState.Values)
+            // foreach (var modelState in ModelState.Values)
+            // {
+            //     foreach (var error in modelState.Errors)
+            //     {
+            //         Console.WriteLine($"Error: {error.ErrorMessage}");
+            //     }
+            // }
+            List<Artist> listArtist = new();
+            foreach (var id in Artists)
             {
-                foreach (var error in modelState.Errors)
-                {
-                    Console.WriteLine($"Error: {error.ErrorMessage}");
-                }
+                var artist = _context.Artist.FirstOrDefault(m => m.Id == Int32.Parse(id));
+                listArtist.Add(artist);
             }
+
+            movie.Artists = listArtist;
 
             if (ModelState.IsValid)
             {
-                Console.WriteLine($"TESTE {movie.Artists} {movie.Studio}");
-                
-                _context.Add(movie);
+                _context.Movie.Add(movie);
                 await _context.SaveChangesAsync();
+                Console.WriteLine("Movie saved to the database.");
                 return RedirectToAction(nameof(Index));
             }
-
-            ViewData["Studios"] = _context.Studio.ToList();
-            ViewData["Artists"] = _context.Artist.ToList();
+            
+            // Se ocorrer um erro de validação, recarregue a lista de estúdios e artistas no ViewBag
+            ViewBag.Studios = new SelectList(_context.Studio, "Id", "Name");
+            ViewBag.Artists = new SelectList(_context.Artist, "Id", "Name", movie.Artists?.Select(a => a.Id).ToArray());
+            Console.WriteLine("Validation error. Movie not saved.");
             return View(movie);
         }
-
-        // GET: Movie/Edit/5
+    /*
+        //adiciona um Movie
+        public IActionResult AddArtist(int? id,Artist artist)
+        {
+            //seleciona o movie
+            var movie = _context.Movie.FirstOrDefault(m => m.Id == id);
+            if (movie == null)
+            {
+                return NotFound();
+            }
+            // Adicionar o novo item à lista
+            movie.Artists.Add(artist);
+            // Redirecionar de volta à página
+            return View(movie);
+        }
+        */
+        // GET: Movies/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Movie == null)
@@ -98,18 +122,15 @@ namespace MvcMovieRefatorado.Controllers
             {
                 return NotFound();
             }
-
-            ViewData["Studios"] = _context.Studio.ToList();
-            ViewData["Artists"] = _context.Artist.ToList();
             return View(movie);
         }
 
-        // POST: Movie/Edit/5
+        // POST: Movies/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ReleaseDate,Genre,Price,StudioId")] Movie movie)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ReleaseDate,Genre,Price")] Movie movie)
         {
             if (id != movie.Id)
             {
@@ -136,13 +157,10 @@ namespace MvcMovieRefatorado.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-
-            ViewData["Studios"] = _context.Studio.ToList();
-            ViewData["Artists"] = _context.Artist.ToList();
             return View(movie);
         }
 
-        // GET: Movie/Delete/5
+        // GET: Movies/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Movie == null)
@@ -151,7 +169,6 @@ namespace MvcMovieRefatorado.Controllers
             }
 
             var movie = await _context.Movie
-                .Include(m => m.Studio)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (movie == null)
             {
@@ -161,7 +178,7 @@ namespace MvcMovieRefatorado.Controllers
             return View(movie);
         }
 
-        // POST: Movie/Delete/5
+        // POST: Movies/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -175,14 +192,14 @@ namespace MvcMovieRefatorado.Controllers
             {
                 _context.Movie.Remove(movie);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool MovieExists(int id)
         {
-          return (_context.Movie?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Movie?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

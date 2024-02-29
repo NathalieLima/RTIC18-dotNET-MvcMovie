@@ -32,35 +32,26 @@
                 <input asp-for="Price" class="form-control" />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <h4>Studio</h4>
-                @if (ViewData["Studios"] != null && (ViewData["Studios"] as List<MvcMovie.Models.Studio>).Count > 0) {
-                    @foreach (var studio in ViewData["Studios"] as List<MvcMovie.Models.Studio>) {
-                        <div class="form-check">
-                            <input type="radio" class="form-radio-input" name="Studio" value="@studio.Id">
-                            <label class="form-radio-label" for="@studio.Id">@studio.Name</label>
-                        </div>
-                    }
-                } else {
-                    <p>Adicione estúdios.</p>
-                }
-                
-            </div>
-            <div class="form-group">
-                <h4>Artists</h4>
-                @if (ViewData["Artists"] != null && (ViewData["Artists"] as List<MvcMovie.Models.Artist>).Count > 0) { // Check if ViewData["Artists"] is not null
-                    @foreach (var artist in ViewData["Artists"] as List<MvcMovie.Models.Artist>) {
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="Artists" value="@artist.Id">
-                            <label class="form-check-label" for="@artist.Id">@artist.Name</label>
-                        </div>
-                    }
-                } else {
-                    <p>Adicione artistas.</p>
-                }
-                
+                <label asp-for="StudioId" class="control-label">Studio</label>
+                <select asp-for="StudioId" asp-items="ViewBag.Studios" class="form-control">
+                    <option value="">Selecione um estúdio</option>
+                </select>
+                <span asp-validation-for="StudioId" class="text-danger"></span>
             </div>
 
+            <div class="form-group">
+                <label asp-for="Artists" class="control-label">Artists</label>
+                <select asp-for="Artists" asp-items="ViewBag.Artists" class="form-control" asp-mode="multiple">
+                </select>
+                <span asp-validation-for="Artists" class="text-danger"></span>
+            </div>
+            @* <table id="Table">
+                <tbody>
+                    @Html.EditorFor(m => m.Artists);
+                </tbody>
+            </table> *@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -72,6 +63,12 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+
+
+
+
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

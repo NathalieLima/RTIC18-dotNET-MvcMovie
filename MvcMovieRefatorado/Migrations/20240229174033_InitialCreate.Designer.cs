@@ -11,7 +11,7 @@ using MvcMovie.Data;
 namespace MvcMovieRefatorado.Migrations
 {
     [DbContext(typeof(MvcMovieContext))]
-    [Migration("20240229024644_InitialCreate")]
+    [Migration("20240229174033_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
