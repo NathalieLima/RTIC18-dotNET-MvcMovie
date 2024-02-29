@@ -518,3 +518,8 @@
 /home/nathalielima/Modulo5/RTIC18-dotNET-MvcMovie/MvcMovieRefatorado/obj/Debug/net7.0/MvcMovieRefatorado.pdb
 /home/nathalielima/Modulo5/RTIC18-dotNET-MvcMovie/MvcMovieRefatorado/obj/Debug/net7.0/MvcMovieRefatorado.genruntimeconfig.cache
 /home/nathalielima/Modulo5/RTIC18-dotNET-MvcMovie/MvcMovieRefatorado/obj/Debug/net7.0/ref/MvcMovieRefatorado.dll
+/home/nathalielima/Modulo5/RTIC18-dotNET-MvcMovie/MvcMovieRefatorado/bin/Debug/net7.0/Microsoft.IdentityModel.Abstractions.dll
+/home/nathalielima/Modulo5/RTIC18-dotNET-MvcMovie/MvcMovieRefatorado/bin/Debug/net7.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/nathalielima/Modulo5/RTIC18-dotNET-MvcMovie/MvcMovieRefatorado/bin/Debug/net7.0/Microsoft.IdentityModel.Logging.dll
+/home/nathalielima/Modulo5/RTIC18-dotNET-MvcMovie/MvcMovieRefatorado/bin/Debug/net7.0/Microsoft.IdentityModel.Tokens.dll
+/home/nathalielima/Modulo5/RTIC18-dotNET-MvcMovie/MvcMovieRefatorado/bin/Debug/net7.0/System.IdentityModel.Tokens.Jwt.dll

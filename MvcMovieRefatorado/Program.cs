@@ -15,7 +15,7 @@ else
 }
 
 // Add services to the container.
-builder.Services.AddScoped<AddCabecalhoMiddleware>();
+// builder.Services.AddScoped<AddCabecalhoMiddleware>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
