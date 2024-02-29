@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using MvcMovie.Auth;
 using MvcMovie.Data;
+using MvcMovie.Data.Security;
 using MvcMovie.Models;
 
 namespace MvcMovieRefatorado.Controllers
@@ -13,147 +15,56 @@ namespace MvcMovieRefatorado.Controllers
     public class LoginController : Controller
     {
         private readonly MvcMovieContext _context;
+        private readonly IAuthService _authService;
 
-        public LoginController(MvcMovieContext context)
+        public LoginController(MvcMovieContext context, IAuthService authService)
         {
             _context = context;
+            _authService = authService;
         }
 
         // GET: Login
-        public async Task<IActionResult> Index()
-        {
-              return _context.Login != null ? 
-                          View(await _context.Login.ToListAsync()) :
-                          Problem("Entity set 'MvcMovieContext.Login'  is null.");
-        }
+        // public async Task<IActionResult> Index()
+        // {
+        //       return _context.Login != null ? 
+        //                   View(await _context.Login.ToListAsync()) :
+        //                   Problem("Entity set 'MvcMovieContext.Login'  is null.");
+        // }
 
-        // GET: Login/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Login == null)
-            {
-                return NotFound();
-            }
-
-            var login = await _context.Login
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (login == null)
-            {
-                return NotFound();
-            }
-
-            return View(login);
-        }
 
         // GET: Login/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
+        public IActionResult Index()
+   {
+      return View();
+   }
 
-        // POST: Login/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Email,Password")] Login login)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(login);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(login);
-        }
+   // POST: Login/Authenticate
+   // To protect from overposting attacks, enable the specific properties you want to bind to.
+   // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+   [HttpPost]
+   [ValidateAntiForgeryToken]
+   public async Task<IActionResult> Login([Bind("Email,Password")] Login user)
+   {
+    Console.WriteLine($"entrei aqui 1");
+    
+      if (ModelState.IsValid)
+      {
+        Console.WriteLine($"entrei aqui 2");
+         user.Password = Utils.HashPassword(user.Password ?? "");
+         var userInDb = await _context.User.FirstOrDefaultAsync(u => u.Email == user.Email && u.Password == user.Password);
+         //if (userInDb.Email == user.Email)
 
-        // GET: Login/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || _context.Login == null)
-            {
-                return NotFound();
-            }
+         var token = _authService.GenerateJwtToken(userInDb.Name, "admin");
+         
+         // Adicione o token ao contexto da solicitação para que o middleware possa acessá-lo
+         HttpContext.Items["PersonalToken"] = token;
+         Console.WriteLine($"{token}");
 
-            var login = await _context.Login.FindAsync(id);
-            if (login == null)
-            {
-                return NotFound();
-            }
-            return View(login);
-        }
+         return RedirectToAction("Index", "Home");
+      }
 
-        // POST: Login/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Email,Password")] Login login)
-        {
-            if (id != login.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(login);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!LoginExists(login.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(login);
-        }
-
-        // GET: Login/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.Login == null)
-            {
-                return NotFound();
-            }
-
-            var login = await _context.Login
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (login == null)
-            {
-                return NotFound();
-            }
-
-            return View(login);
-        }
-
-        // POST: Login/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.Login == null)
-            {
-                return Problem("Entity set 'MvcMovieContext.Login'  is null.");
-            }
-            var login = await _context.Login.FindAsync(id);
-            if (login != null)
-            {
-                _context.Login.Remove(login);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+      return View(user);
+   }
 
         private bool LoginExists(int id)
         {

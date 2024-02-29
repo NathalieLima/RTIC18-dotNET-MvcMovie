@@ -44,22 +44,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/nathalielima/Modulo5/RTIC18-dotNET-MvcMovie/MvcMovieRefatorado/Views/Login/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTG9naW4vQ3JlYXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[/home/nathalielima/Modulo5/RTIC18-dotNET-MvcMovie/MvcMovieRefatorado/Views/Login/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTG9naW4vRGVsZXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[/home/nathalielima/Modulo5/RTIC18-dotNET-MvcMovie/MvcMovieRefatorado/Views/Login/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTG9naW4vRGV0YWlscy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[/home/nathalielima/Modulo5/RTIC18-dotNET-MvcMovie/MvcMovieRefatorado/Views/Login/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTG9naW4vRWRpdC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [/home/nathalielima/Modulo5/RTIC18-dotNET-MvcMovie/MvcMovieRefatorado/Views/Login/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTG9naW4vSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -110,6 +94,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/home/nathalielima/Modulo5/RTIC18-dotNET-MvcMovie/MvcMovieRefatorado/Views/Studio/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3R1ZGlvL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nathalielima/Modulo5/RTIC18-dotNET-MvcMovie/MvcMovieRefatorado/Views/User/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9DcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nathalielima/Modulo5/RTIC18-dotNET-MvcMovie/MvcMovieRefatorado/Views/User/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9EZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nathalielima/Modulo5/RTIC18-dotNET-MvcMovie/MvcMovieRefatorado/Views/User/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9EZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nathalielima/Modulo5/RTIC18-dotNET-MvcMovie/MvcMovieRefatorado/Views/User/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9FZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nathalielima/Modulo5/RTIC18-dotNET-MvcMovie/MvcMovieRefatorado/Views/User/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/nathalielima/Modulo5/RTIC18-dotNET-MvcMovie/MvcMovieRefatorado/Views/_ViewImports.cshtml]
