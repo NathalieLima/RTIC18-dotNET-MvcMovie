@@ -523,3 +523,6 @@
 /home/nathalielima/Modulo5/RTIC18-dotNET-MvcMovie/MvcMovieRefatorado/bin/Debug/net7.0/Microsoft.IdentityModel.Logging.dll
 /home/nathalielima/Modulo5/RTIC18-dotNET-MvcMovie/MvcMovieRefatorado/bin/Debug/net7.0/Microsoft.IdentityModel.Tokens.dll
 /home/nathalielima/Modulo5/RTIC18-dotNET-MvcMovie/MvcMovieRefatorado/bin/Debug/net7.0/System.IdentityModel.Tokens.Jwt.dll
+/home/nathalielima/Modulo5/RTIC18-dotNET-MvcMovie/MvcMovieRefatorado/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/nathalielima/Modulo5/RTIC18-dotNET-MvcMovie/MvcMovieRefatorado/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.dll
+/home/nathalielima/Modulo5/RTIC18-dotNET-MvcMovie/MvcMovieRefatorado/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll

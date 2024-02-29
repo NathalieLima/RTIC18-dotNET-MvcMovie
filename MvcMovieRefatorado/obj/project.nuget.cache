@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "LdEmPBDut5ZxLodLR4ookjW+MbQIGkEMm1xcOZvOtrCYz3SQUphEnfkoILmazuekkm1egeQKvsw2b6Cvk5IxmA==",
+  "dgSpecHash": "bS99VmmmRmqdEeRENw0CbgJ2ciesJ9NgbTSx4zpqTbutQuz65zXVKADDimQMWHmM0NyVr3Z4RSY3Vu84um/XFA==",
   "success": true,
   "projectFilePath": "/home/nathalielima/Modulo5/RTIC18-dotNET-MvcMovie/MvcMovieRefatorado/MvcMovieRefatorado.csproj",
   "expectedPackageFiles": [
@@ -54,6 +54,7 @@
     "/home/nathalielima/.nuget/packages/humanizer.core.zh-cn/2.14.1/humanizer.core.zh-cn.2.14.1.nupkg.sha512",
     "/home/nathalielima/.nuget/packages/humanizer.core.zh-hans/2.14.1/humanizer.core.zh-hans.2.14.1.nupkg.sha512",
     "/home/nathalielima/.nuget/packages/humanizer.core.zh-hant/2.14.1/humanizer.core.zh-hant.2.14.1.nupkg.sha512",
+    "/home/nathalielima/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/7.0.15/microsoft.aspnetcore.authentication.jwtbearer.7.0.15.nupkg.sha512",
     "/home/nathalielima/.nuget/packages/microsoft.aspnetcore.razor.language/6.0.11/microsoft.aspnetcore.razor.language.6.0.11.nupkg.sha512",
     "/home/nathalielima/.nuget/packages/microsoft.bcl.asyncinterfaces/6.0.0/microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
     "/home/nathalielima/.nuget/packages/microsoft.build/17.3.2/microsoft.build.17.3.2.nupkg.sha512",
@@ -93,6 +94,8 @@
     "/home/nathalielima/.nuget/packages/microsoft.identitymodel.abstractions/7.4.0/microsoft.identitymodel.abstractions.7.4.0.nupkg.sha512",
     "/home/nathalielima/.nuget/packages/microsoft.identitymodel.jsonwebtokens/7.4.0/microsoft.identitymodel.jsonwebtokens.7.4.0.nupkg.sha512",
     "/home/nathalielima/.nuget/packages/microsoft.identitymodel.logging/7.4.0/microsoft.identitymodel.logging.7.4.0.nupkg.sha512",
+    "/home/nathalielima/.nuget/packages/microsoft.identitymodel.protocols/6.35.0/microsoft.identitymodel.protocols.6.35.0.nupkg.sha512",
+    "/home/nathalielima/.nuget/packages/microsoft.identitymodel.protocols.openidconnect/6.35.0/microsoft.identitymodel.protocols.openidconnect.6.35.0.nupkg.sha512",
     "/home/nathalielima/.nuget/packages/microsoft.identitymodel.tokens/7.4.0/microsoft.identitymodel.tokens.7.4.0.nupkg.sha512",
     "/home/nathalielima/.nuget/packages/microsoft.net.stringtools/17.3.2/microsoft.net.stringtools.17.3.2.nupkg.sha512",
     "/home/nathalielima/.nuget/packages/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",

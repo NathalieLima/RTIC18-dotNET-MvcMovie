@@ -57,8 +57,15 @@ namespace MvcMovieRefatorado.Controllers
          var token = _authService.GenerateJwtToken(userInDb.Name, "admin");
          
          // Adicione o token ao contexto da solicitação para que o middleware possa acessá-lo
-         HttpContext.Items["PersonalToken"] = token;
          Console.WriteLine($"{token}");
+
+         HttpContext.Response.Cookies.Append("JwtToken", token.ToString(), new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.Strict
+                // Adicione outras opções de cookie conforme necessário
+            });
 
          return RedirectToAction("Index", "Home");
       }
